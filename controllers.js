@@ -10,6 +10,7 @@ const getRecordsController = async (req, res)=> {
 }
 
 const postRecordController = async (req, res)=>{
+    console.log("POST data",req.body)
     const record = new Record({
         name: req.body.name,
         number: req.body.number
@@ -24,14 +25,12 @@ const postRecordController = async (req, res)=>{
 }
 
 const getRecordController = async (req, res)=> {
-    
-    Record.findById(req.params.id)
-   .then((record)=>{
-       res.send(record)
-   })
-   .catch(()=>{
-       res.status(401).send("Record not found")
-   })
+    try{
+        const record = await Record.findById(req.params.id)
+        res.send(record)
+    }catch(err){
+       res.json(err)
+   }
 
 }
 
