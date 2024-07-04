@@ -1,6 +1,6 @@
-const Record = require('./record')
+import Record from './record.js'
 
-const getRecordsController = async (req, res)=> {
+const getRecordsController = async (req, res) => {
     try{
         const records = await Record.find()
         res.json(records)
@@ -9,7 +9,7 @@ const getRecordsController = async (req, res)=> {
     }
 }
 
-const postRecordController = async (req, res)=>{
+const postRecordController = async (req, res) => {
     console.log("POST data",req.body)
     const record = new Record({
         name: req.body.name,
@@ -24,7 +24,7 @@ const postRecordController = async (req, res)=>{
 
 }
 
-const getRecordController = async (req, res)=> {
+const getRecordController = async (req, res) => {
     try{
         const record = await Record.findById(req.params.id)
         res.send(record)
@@ -34,4 +34,4 @@ const getRecordController = async (req, res)=> {
 
 }
 
-module.exports = [getRecordsController, postRecordController, getRecordController]
+export default [getRecordsController, postRecordController, getRecordController]
