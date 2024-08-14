@@ -34,4 +34,22 @@ const getRecordController = async (req, res) => {
 
 }
 
-export default [getRecordsController, postRecordController, getRecordController]
+const updateRecordController = async (req, res) => {
+    try{
+        const record = await Record.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        res.send(record)
+    }catch(err){
+        res.json(err)
+    }
+}
+
+const deleteRecordController = async (req, res) => {
+    try{
+        const removedRecord = await Record.findByIdAndRemove(req.params.id)
+        res.send(removedRecord)
+    }catch(err){
+        res.json(err)
+    }
+}
+
+export default [getRecordsController, postRecordController, getRecordController, updateRecordController, deleteRecordController]
