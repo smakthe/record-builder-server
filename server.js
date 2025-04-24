@@ -8,5 +8,5 @@ const PORT = process.env.PORT || 3000
 
 connectDB()
 app.use(cors(),json(),routes).listen(PORT,() => {
-    console.log("Application listening on Port ",PORT)
+    console.log("Application listening on Port",PORT)
 })
